@@ -3,17 +3,17 @@ oh-my-posh init pwsh --config "$env:localappdata\oh-my-posh-config\jando.omp.jso
 
 Import-Module -Name Terminal-Icons
 
-Remove-Alias gc -Force -ErrorAction SilentlyContinue
-Remove-Alias gcb -Force -ErrorAction SilentlyContinue
-Remove-Alias gcm -Force -ErrorAction SilentlyContinue
-Remove-Alias gcs -Force -ErrorAction SilentlyContinue
-Remove-Alias gl -Force -ErrorAction SilentlyContinue
-Remove-Alias gm -Force -ErrorAction SilentlyContinue
-Remove-Alias gpv -Force -ErrorAction SilentlyContinue
-Remove-Alias gs -Force -ErrorAction SilentlyContinue
-Remove-Alias ga -Force -ErrorAction SilentlyContinue
-Remove-Alias gp -Force -ErrorAction SilentlyContinue
-Remove-Alias gd -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gc -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gcb -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gcm -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gcs -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gl -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gm -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gpv -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gs -Force -ErrorAction SilentlyContinue
+Remove-Alias -name ga -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gp -Force -ErrorAction SilentlyContinue
+Remove-Alias -name gd -Force -ErrorAction SilentlyContinue
 
 
 Set-Alias vim nvim
@@ -21,12 +21,31 @@ Set-Alias vi nvim
 Set-Alias ll ls
 Set-Alias g git
 Set-Alias gti git
-Set-Alias gs "git status" -force
-Set-Alias ga "git add *" -force
-Set-Alias gc "git commit" -force -option 'Constant','AllScope'
-Set-Alias gp "git push" -force -option 'Constant','AllScope'
-Set-Alias gd "git diff" -force
-Set-Alias gl "git log --oneline" -force -option 'Constant','AllScope'
+
+function gs {
+	git status
+}
+
+function ga {
+	git add *
+}
+
+function gd {
+	git diff $args 
+}
+
+function gc {
+	git commit -m $args
+}
+
+function gp {
+	git push $args
+}
+
+function gl {
+	git log --oneline $args
+}
+
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
